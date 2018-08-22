@@ -1,0 +1,247 @@
+create database Regroup;
+
+
+use regroup;
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: Produit
+#------------------------------------------------------------
+
+CREATE TABLE Produit(
+        IdProduit   int (11) Auto_increment  NOT NULL ,
+        Prix        Float ,
+        Nom         Varchar (25) ,
+        Quantite    Int ,
+        Description Varchar (25) ,
+        IdTemps     Int ,
+        IdTranche   Int ,
+        PRIMARY KEY (IdProduit )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Type
+#------------------------------------------------------------
+
+CREATE TABLE Type(
+        IdType int (11) Auto_increment  NOT NULL ,
+        Nom    Varchar (25) ,
+        PRIMARY KEY (IdType )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Temps
+#------------------------------------------------------------
+
+CREATE TABLE Temps(
+        IdTemps   int (11) Auto_increment  NOT NULL ,
+        DateDebut Date ,
+        DateFin   Date ,
+        PRIMARY KEY (IdTemps )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Groupe
+#------------------------------------------------------------
+
+CREATE TABLE Groupe(
+        IdGroupe       int (11) Auto_increment  NOT NULL ,
+        NbParticipants Int ,
+        nbMax          Int ,
+        PRIMARY KEY (IdGroupe )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Tranche
+#------------------------------------------------------------
+
+CREATE TABLE Tranche(
+        IdTranche int (11) Auto_increment  NOT NULL ,
+        Palier    Int ,
+        PRIMARY KEY (IdTranche )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: User
+#------------------------------------------------------------
+
+CREATE TABLE User(
+        Adresse    Varchar (25) ,
+        Email      Varchar (25) ,
+        Telephone  Varchar (25) ,
+        username   Varchar (25) ,
+        password   Varchar (25) ,
+        IdPersonne Int NOT NULL ,
+        PRIMARY KEY (IdPersonne )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Promotion
+#------------------------------------------------------------
+
+CREATE TABLE Promotion(
+        IdPromotion int (11) Auto_increment  NOT NULL ,
+        Reduction   Float ,
+        PRIMARY KEY (IdPromotion )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Commercial
+#------------------------------------------------------------
+
+CREATE TABLE Commercial(
+        DateEmbauche Date ,
+        Specialite   Varchar (25) ,
+        emailcom     Varchar (25) ,
+        passwordcom  Varchar (25) ,
+        IdPersonne   Int NOT NULL ,
+        IdEntreprise Int ,
+        PRIMARY KEY (IdPersonne )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Entreprise
+#------------------------------------------------------------
+
+CREATE TABLE Entreprise(
+        IdEntreprise int (11) Auto_increment  NOT NULL ,
+        Nom          Varchar (25) ,
+        Type         Varchar (25) ,
+        Adresse      Varchar (25) ,
+        PRIMARY KEY (IdEntreprise )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Personne
+#------------------------------------------------------------
+
+CREATE TABLE Personne(
+        IdPersonne    int (11) Auto_increment  NOT NULL ,
+        Nom           Varchar (25) ,
+        Prenom        Varchar (25) ,
+        DateNaissance Date ,
+        PRIMARY KEY (IdPersonne )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Media
+#------------------------------------------------------------
+
+CREATE TABLE Media(
+        IdMedia   int (11) Auto_increment  NOT NULL ,
+        Nom       Varchar (25) ,
+        URL       Varchar (25) ,
+        IdProduit Int ,
+        PRIMARY KEY (IdMedia )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Administrateur
+#------------------------------------------------------------
+
+CREATE TABLE Administrateur(
+        IdAdmin  Int NOT NULL ,
+        Nom      Varchar (25) ,
+        password Varchar (25) ,
+        PRIMARY KEY (IdAdmin )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Proposer
+#------------------------------------------------------------
+
+CREATE TABLE Proposer(
+        IdPersonne Int NOT NULL ,
+        IdAdmin    Int NOT NULL ,
+        PRIMARY KEY (IdPersonne ,IdAdmin )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: correspondre
+#------------------------------------------------------------
+
+CREATE TABLE correspondre(
+        IdProduit Int NOT NULL ,
+        IdType    Int NOT NULL ,
+        PRIMARY KEY (IdProduit ,IdType )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: acheter
+#------------------------------------------------------------
+
+CREATE TABLE acheter(
+        IdProduit Int NOT NULL ,
+        IdGroupe  Int NOT NULL ,
+        PRIMARY KEY (IdProduit ,IdGroupe )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: appartenir
+#------------------------------------------------------------
+
+CREATE TABLE appartenir(
+        IdGroupe   Int NOT NULL ,
+        IdPersonne Int NOT NULL ,
+        PRIMARY KEY (IdGroupe ,IdPersonne )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: beneficier
+#------------------------------------------------------------
+
+CREATE TABLE beneficier(
+        IdProduit   Int NOT NULL ,
+        IdPromotion Int NOT NULL ,
+        PRIMARY KEY (IdProduit ,IdPromotion )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Valider
+#------------------------------------------------------------
+
+CREATE TABLE Valider(
+        IdAdmin   Int NOT NULL ,
+        IdProduit Int NOT NULL ,
+        PRIMARY KEY (IdAdmin ,IdProduit )
+)ENGINE=InnoDB;
+
+ALTER TABLE Produit ADD CONSTRAINT FK_Produit_IdTemps FOREIGN KEY (IdTemps) REFERENCES Temps(IdTemps);
+ALTER TABLE Produit ADD CONSTRAINT FK_Produit_IdTranche FOREIGN KEY (IdTranche) REFERENCES Tranche(IdTranche);
+ALTER TABLE User ADD CONSTRAINT FK_User_IdPersonne FOREIGN KEY (IdPersonne) REFERENCES Personne(IdPersonne);
+ALTER TABLE Commercial ADD CONSTRAINT FK_Commercial_IdPersonne FOREIGN KEY (IdPersonne) REFERENCES Personne(IdPersonne);
+ALTER TABLE Commercial ADD CONSTRAINT FK_Commercial_IdEntreprise FOREIGN KEY (IdEntreprise) REFERENCES Entreprise(IdEntreprise);
+ALTER TABLE Media ADD CONSTRAINT FK_Media_IdProduit FOREIGN KEY (IdProduit) REFERENCES Produit(IdProduit);
+ALTER TABLE Proposer ADD CONSTRAINT FK_Proposer_IdPersonne FOREIGN KEY (IdPersonne) REFERENCES Personne(IdPersonne);
+ALTER TABLE Proposer ADD CONSTRAINT FK_Proposer_IdAdmin FOREIGN KEY (IdAdmin) REFERENCES Administrateur(IdAdmin);
+ALTER TABLE correspondre ADD CONSTRAINT FK_correspondre_IdProduit FOREIGN KEY (IdProduit) REFERENCES Produit(IdProduit);
+ALTER TABLE correspondre ADD CONSTRAINT FK_correspondre_IdType FOREIGN KEY (IdType) REFERENCES Type(IdType);
+ALTER TABLE acheter ADD CONSTRAINT FK_acheter_IdProduit FOREIGN KEY (IdProduit) REFERENCES Produit(IdProduit);
+ALTER TABLE acheter ADD CONSTRAINT FK_acheter_IdGroupe FOREIGN KEY (IdGroupe) REFERENCES Groupe(IdGroupe);
+ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_IdGroupe FOREIGN KEY (IdGroupe) REFERENCES Groupe(IdGroupe);
+ALTER TABLE appartenir ADD CONSTRAINT FK_appartenir_IdPersonne FOREIGN KEY (IdPersonne) REFERENCES Personne(IdPersonne);
+ALTER TABLE beneficier ADD CONSTRAINT FK_beneficier_IdProduit FOREIGN KEY (IdProduit) REFERENCES Produit(IdProduit);
+ALTER TABLE beneficier ADD CONSTRAINT FK_beneficier_IdPromotion FOREIGN KEY (IdPromotion) REFERENCES Promotion(IdPromotion);
+ALTER TABLE Valider ADD CONSTRAINT FK_Valider_IdAdmin FOREIGN KEY (IdAdmin) REFERENCES Administrateur(IdAdmin);
+ALTER TABLE Valider ADD CONSTRAINT FK_Valider_IdProduit FOREIGN KEY (IdProduit) REFERENCES Produit(IdProduit);
+

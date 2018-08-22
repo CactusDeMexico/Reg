@@ -1,0 +1,215 @@
+ALTER TABLE temps AUTO_INCREMENT=0;
+ALTER TABLE tranche AUTO_INCREMENT=0;
+ALTER TABLE produit AUTO_INCREMENT=0;
+ALTER TABLE media AUTO_INCREMENT=0;
+  #############################################################
+   #exemple bijoux 
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-02-20','2018-04-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '69.0','bague','bijoux','argent','50',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('bague','bague.jpg',@idProduit) ;
+
+   #############################################################
+   #exemple bijoux 2
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-06-20','2018-07-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '85.99','bracelet','bijoux','or','50',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('bracelet','bracelet.jpeg',@idProduit) ;
+
+   #############################################################
+   #exemple parfum 
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-06-20','2018-07-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '85.0','chance','Parfum','Parfum channel','50',,@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('chance','chance.jpg',@idProduit) ;
+
+    #############################################################
+   #exemple parfum 2
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-06-20','2018-07-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '95.0','gabriel','Parfum','Parfum channel','50',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('gabriel','gabriel.jpg',@idProduit) ;
+   
+    #############################################################
+   #exemple ecran 2
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-01-15','2018-03-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '345.0','ecran','informatique','asus','75',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('ecran asus','ecran2.jpg',@idProduit) ;
+  
+   #############################################################
+   #exemple ecran 1
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-01-15','2018-03-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '245.0','ecran','informatique','iiyama','50',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('ecran iiyama','ecran.jpg',@idProduit) ;
+  
+   #############################################################
+   #exemple haut parleur
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES (  '2018-01-15','2018-02-15') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '5');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '78.99','haut-paleur','informatique','haut parleur pour ordinateur','50',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('haut_parleur','speaker.jpg',@idProduit) ;
+  
+ 
+   #############################################################
+   #exemple Sac gucci
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES ( '2018-06-20','2018-05-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '0');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '800.0','Sac a main','accessoire','Gucci','5',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('sacgucci','sac.jpg',@idProduit) ;
+
+
+   #############################################################
+   #exemple Sac lv
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES ( '2018-01-20','2018-03-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '0');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '900.0','Sac a main','accessoire','lv','5',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('saclv','sac2.jpg',@idProduit) ;
+
+   #############################################################
+   #exemple louboutin 1
+   #############################################################
+   
+INSERT INTO Temps(DateDebut,DateFin) VALUES ( '2018-01-20','2018-03-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '0');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '800.0','chaussure','accessoire','Louboutin','10',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('chaussure','chaussure.jpg',@idProduit) ;
+
+   #############################################################
+   #exemple louboutin 2
+   #############################################################
+INSERT INTO Temps(DateDebut,DateFin) VALUES ( '2018-01-20','2018-03-20') ;
+ SET @idtemps := (SELECT LAST_INSERT_ID() );
+
+INSERT INTO Tranche (palier) VALUES ( '0');
+ SET @idtranche := (SELECT LAST_INSERT_ID() ); 
+INSERT INTO Produit(prix,nom,type,description,quantite,idTemps,idTranche) VALUES ( '545.0','chaussure noir','accessoire','Louboutin','7',@idTemps,@idTranche); 
+   
+   SET @idProduit := (SELECT LAST_INSERT_ID() );
+INSERT INTO Media (nom,URL,idproduit) VALUES ('chaussurelb','loub.jpg',@idProduit) ;   
+   
+   
+   #############################################################
+   #creation vue
+   #############################################################
+   CREATE VIEW complet
+AS
+SELECT * FROM   media
+
+union
+
+SELECT * FROM  temps
+
+union
+
+SELECT * FROM  Produit
+
+union
+
+SELECT * FROM  tranche;
+
+
+CROSS JOIN 
+#fail
+CREATE VIEW complet
+AS SELECT IdMedia ,NomMedia,URL, IdTemps,DateDebut,DateFin, idtranche,palier, idproduit,prix,nom,type,description,quantite
+FROM media,temps,tranche,produit;
+#success
+CREATE VIEW test2
+AS SELECT Media.IdMedia ,Media.NomMedia,Media.URL,Produit.idproduit,Produit.prix,Produit.nom,Produit.type,Produit.description,Produit.quantite
+FROM media,produit where Media.idProduit=Produit.idProduit;
+
+
+AS SELECT Media.IdMedia ,Media.NomMedia, Media.URL, Temps.IdTemps,Temps.DateDebut,Temps.DateFin,Tranche.idtranche,Tranche.palier,Produit.idproduit,Produit.prix,Produit.nom,Produit.type,Produit.description,Produit.quantite
+FROM media,produit,temps,tranche where Media.idProduit=Produit.idProduit and Temps.IdTemps=Produit.IdTemps and Tranche.idtranche= Produit.idtranche ;
+
+CREATE VIEW exemple
+AS SELECT Produit.nom,Temps.DateDebut,Produit.quantite,Media.NomMedia,Media.URL
+FROM media,produit,temps where Media.idProduit=Produit.idProduit AND Temps.IdTemps=Produit.IdTemps;
+
+
+ALTER VIEW exemple
+AS SELECT Produit.nom,Temps.DateDebut,Produit.quantite,Media.NomMedia,Media.URL
+FROM media,produit,temps where Media.idProduit=Produit.idProduit AND Temps.IdTemps=Produit.IdTemps;
+
+union
+SELECT idtemps,DateDebut,DateFin
+FROM temps
+
+union
+SELECT idtranche,palier
+FROM tranche
+
+union
+SELECT idproduit,prix,nom,type,description,quantite
+FROM produit;
+;
